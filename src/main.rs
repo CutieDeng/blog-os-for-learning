@@ -42,13 +42,6 @@ fn test_runner(tests: &[&dyn Fn()]) {
     exit_qemu(QemuExitCode::Success); 
 }
 
-#[test_case] 
-fn trivial_assertion() {
-    serial_print!("Trivial assert... "); 
-    assert_eq!(0, 1); 
-    serial_println! ("[OK]"); 
-} 
-
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(u32)]
 pub enum QemuExitCode {
