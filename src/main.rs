@@ -12,7 +12,7 @@ fn panic(info: &core::panic::PanicInfo) -> ! {
     loop {} 
 }
 
-
+mod serial; 
 mod vga_buffer; 
 
 // use crate::vga_buffer::Writer; 
@@ -29,7 +29,7 @@ pub extern "C" fn _start() -> ! {
 
 #[cfg(test)]
 fn test_runner(tests: &[&dyn Fn()]) {
-    println!("Running {} tests", tests.len()); 
+    serial_println!("Running {} tests", tests.len());
     for test in tests {
         test(); 
     }
@@ -38,9 +38,9 @@ fn test_runner(tests: &[&dyn Fn()]) {
 
 #[test_case] 
 fn trivial_assertion() {
-    print!("Trivial assert... "); 
+    serial_print!("Trivial assert... "); 
     assert_eq!(1, 1); 
-    println! ("[OK]"); 
+    serial_println! ("[OK]"); 
 } 
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
