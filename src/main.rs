@@ -8,7 +8,13 @@
 #[panic_handler]
 fn panic(info: &core::panic::PanicInfo) -> ! {
     // todo!();  
-    println!("{}", info); 
+    if cfg!(test) {
+        serial_println!("[failed]\n");
+        serial_println!("Error: {}\n", info);
+        exit_qemu(QemuExitCode::Failed);
+    } else {
+        println!("{}", info); 
+    }
     loop {} 
 }
 
@@ -39,7 +45,7 @@ fn test_runner(tests: &[&dyn Fn()]) {
 #[test_case] 
 fn trivial_assertion() {
     serial_print!("Trivial assert... "); 
-    assert_eq!(1, 1); 
+    assert_eq!(0, 1); 
     serial_println! ("[OK]"); 
 } 
 
