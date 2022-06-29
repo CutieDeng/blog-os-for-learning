@@ -26,5 +26,7 @@ pub extern "C" fn _start() -> ! {
     #[cfg(test)] 
     test_main(); 
 
+    serial_println!("Hello World!"); 
+
     loop {} 
 }

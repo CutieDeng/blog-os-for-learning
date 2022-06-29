@@ -1,5 +1,6 @@
 [build] 
-target = "x86_64-blog-os.json"
+# target = "x86_64-blog-os.json"
+target = "riscv64imac-unknown-none-elf"
 
 [target.'cfg(target_os = "none")']
 runner = "bootimage runner"
